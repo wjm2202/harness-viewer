@@ -1,0 +1,8 @@
+{
+  // servers used by the agents
+  "servers": {
+    "github": { "type": "http", "url": "https://api.githubcopilot.com/mcp/" },
+    "memory": { "command": "npx", "args": ["-y", "memory-mcp"], },
+    "unused": { "command": "node", "args": ["unused.js"] }
+  }
+}

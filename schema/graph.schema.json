@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:discovery-graph:schema:2",
+  "title": "discovery-graph/2",
+  "type": "object",
+  "required": [
+    "schema",
+    "meta",
+    "nodes",
+    "edges"
+  ],
+  "properties": {
+    "schema": {
+      "enum": [
+        "discovery-graph/1",
+        "discovery-graph/2"
+      ]
+    },
+    "meta": {
+      "type": "object",
+      "required": [
+        "name",
+        "root",
+        "generatedAt",
+        "generator",
+        "scannedFiles"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "root": {
+          "type": "string"
+        },
+        "generatedAt": {
+          "type": "string"
+        },
+        "generator": {
+          "type": "string"
+        },
+        "scannedFiles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "label",
+          "origin",
+          "confidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z_]+:[a-z0-9._/*-]+$"
+          },
+          "kind": {
+            "enum": [
+              "instruction",
+              "agent",
+              "prompt",
+              "skill",
+              "mcp_server",
+              "tool",
+              "state",
+              "gate",
+              "artifact",
+              "trigger",
+              "actor",
+              "rule"
+            ]
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string"
+          },
+          "source": {
+            "type": "object",
+            "required": [
+              "file"
+            ],
+            "properties": {
+              "file": {
+                "type": "string"
+              },
+              "line": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "additionalProperties": false
+          },
+          "origin": {
+            "enum": [
+              "scan",
+              "agent",
+              "human"
+            ]
+          },
+          "confidence": {
+            "enum": [
+              "declared",
+              "inferred",
+              "speculative"
+            ]
+          },
+          "initial": {
+            "type": "boolean"
+          },
+          "terminal": {
+            "type": "boolean"
+          },
+          "parent": {
+            "type": "string"
+          },
+          "criteria": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "gateType": {
+            "enum": [
+              "human",
+              "automated",
+              "agent",
+              "implicit"
+            ]
+          },
+          "props": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "from",
+          "to",
+          "kind",
+          "origin",
+          "confidence"
+        ],
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "defines",
+              "transitions_to",
+              "performed_by",
+              "uses",
+              "provides",
+              "reads",
+              "writes",
+              "delegates_to",
+              "invokes",
+              "triggers",
+              "constrains",
+              "references"
+            ]
+          },
+          "label": {
+            "type": "string"
+          },
+          "source": {
+            "type": "object",
+            "required": [
+              "file"
+            ],
+            "properties": {
+              "file": {
+                "type": "string"
+              },
+              "line": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "additionalProperties": false
+          },
+          "origin": {
+            "enum": [
+              "scan",
+              "agent",
+              "human"
+            ]
+          },
+          "confidence": {
+            "enum": [
+              "declared",
+              "inferred",
+              "speculative"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

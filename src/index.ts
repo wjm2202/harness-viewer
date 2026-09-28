@@ -1,0 +1,12 @@
+export * from "./schema.js";
+export { validateGraph, assertValid, type Issue, type ValidationResult } from "./validate.js";
+export { scanRepo, type ScanOptions } from "./scan/index.js";
+export { findHarnessFiles, classify, type HarnessFile } from "./scan/files.js";
+export { mergeGraphs, type MergeResult } from "./merge.js";
+export { lintGraph, renderLintMarkdown, LINT_RULES, type Finding, type LintReport } from "./lint.js";
+export { renderBrief } from "./brief.js";
+export { renderViewer } from "./viewer.js";
+export { buildJsonSchema } from "./jsonSchema.js";
+export { GraphBuilder } from "./builder.js";
+export { main } from "./cli.js";
+export { buildMachine, renderMermaid, type Machine, type Workflow } from "./machine.js";

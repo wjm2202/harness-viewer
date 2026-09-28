@@ -1,0 +1,50 @@
+{
+  "name": "discovery-graph",
+  "version": "0.1.0",
+  "description": "Map an agentic harness (copilot-instructions, agents, prompts, skills, MCP tools) into a process/knowledge graph you can view, lint and evolve.",
+  "type": "module",
+  "license": "0BSD",
+  "bin": {
+    "discovery-graph": "dist/bin.js",
+    "dgraph": "dist/bin.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./schema.json": "./schema/graph.schema.json"
+  },
+  "files": [
+    "dist",
+    "schema",
+    "docs/GRAPH-SPEC.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint .",
+    "prepare": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "demo": "npm run build && node dist/bin.js all test/fixtures/sample-repo --out .discovery-graph-demo"
+  },
+  "dependencies": {
+    "yaml": "^2.5.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@types/jsdom": "^30.0.0",
+    "@types/node": "^22.20.4",
+    "eslint": "^9.39.5",
+    "jsdom": "^24.1.3",
+    "prettier": "^3.9.9",
+    "typescript": "^5.5.0",
+    "typescript-eslint": "^8.71.0",
+    "vitest": "^5.0.2"
+  }
+}
